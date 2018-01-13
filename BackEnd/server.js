@@ -2,6 +2,20 @@ var express = require("express")
 var Sequelize = require("sequelize")
 var nodeadmin = require("nodeadmin")
 
+//FASJNDSAIC CORS = 4 ore din viata 
+var cors=require('cors')
+var app=express()
+app.use(cors());
+
+
+
+var app = express()
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 //connection
 
 var sequelize = new Sequelize('tracklist', 'root', '', {
@@ -43,7 +57,7 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 
 // cat
 // get a list of categories
-app.get('/categories', function(request, response) {
+app.get('/categories',cors(), function(request, response) {
     Categories.findAll().then(function(categories){
         response.status(200).send(categories)
     })
@@ -52,14 +66,14 @@ app.get('/categories', function(request, response) {
 
 
 //create new category
-app.post('/categories', function(request, response) {
+app.post('/categories',cors(), function(request, response) {
     Categories.create(request.body).then(function(category) {
         response.status(201).send(category)
     })
 })
 
 // read category by id
-app.get('/categories/:id', function(request, response) {
+app.get('/categories/:id',cors(), function(request, response) {
     Categories.findOne({where: {id:request.params.id}}).then(function(category) {
         if(category) {
             response.status(200).send(category)
@@ -71,7 +85,7 @@ app.get('/categories/:id', function(request, response) {
 
 
 //update category by id
-app.put('/categories/:id', function(request, response) {
+app.put('/categories/:id',cors(), function(request, response) {
     Categories.findById(request.params.id).then(function(category) {
         if(category) {
             category.update(request.body).then(function(category){
@@ -86,7 +100,7 @@ app.put('/categories/:id', function(request, response) {
 })
 
 //delete category by id
-app.delete('/categories/:id', function(request, response) {
+app.delete('/categories/:id',cors(), function(request, response) {
     Categories.findById(request.params.id).then(function(category) {
         if(category) {
             category.destroy().then(function(){
@@ -104,7 +118,7 @@ app.delete('/categories/:id', function(request, response) {
 
 // get a list of tracks
 
-app.get('/tracks', function(request, response) {
+app.get('/tracks', cors(), function(request, response) {
     Tracks.findAll(
         {
             include: [{
@@ -122,7 +136,7 @@ app.get('/tracks', function(request, response) {
 
 // read track by id
 
-app.get('/tracks/:id', function(request, response) {
+app.get('/tracks/:id', cors(),function(request, response) {
     Tracks.findById(request.params.id).then(
             function(track) {
                 response.status(200).send(track)
@@ -132,7 +146,7 @@ app.get('/tracks/:id', function(request, response) {
 
 //create new track
 
-app.post('/tracks', function(request, response) {
+app.post('/tracks', cors(), function(request, response) {
     Tracks.create(request.body).then(function(track) {
         response.status(201).send(track)
     })
@@ -142,7 +156,7 @@ app.post('/tracks', function(request, response) {
 
 //update existing track by id
 
-app.put('/tracks/:id', function(request, response) {
+app.put('/tracks/:id',cors(), function(request, response) {
     Tracks.findById(request.params.id).then(function(track) {
         if(track) {
             track.update(request.body).then(function(track){
@@ -158,7 +172,7 @@ app.put('/tracks/:id', function(request, response) {
 
 //delete track by id
 
-app.delete('/tracks/:id', function(request, response) {
+app.delete('/tracks/:id',cors(), function(request, response) {
     Tracks.findById(request.params.id).then(function(track) {
         if(track) {
             track.destroy().then(function(){
@@ -172,7 +186,7 @@ app.delete('/tracks/:id', function(request, response) {
 
 //show track by category_id
 
-app.get('/categories/:id/track', function(request, response) {
+app.get('/categories/:id/track',cors(), function(request, response) {
     Tracks.findAll({where:{category_id: request.params.id}}).then(
             function(track) {
                 response.status(200).send(track)
