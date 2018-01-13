@@ -1,5 +1,5 @@
 {
-  "name": "DiManager Backend",
+  "name": "dmbackend",
   "version": "1.0.0",
   "description": "backend for app ",
   "main": "server.js",
