@@ -4,6 +4,8 @@ import Header from './components/header';
 import TrackItem from './components/trackitem'
 
 import Form from './components/form'
+import axios from 'axios';
+
 
 class App extends Component {
  constructor(props){
@@ -36,7 +38,7 @@ class App extends Component {
   
   onSubmit=(fields)=>{
     this.setState({fields});
-    console.log("App comp got :",fields);
+    //console.log("App comp got :",fields);
     
     let tracks=this.state.tracks.slice();
     tracks.push(
@@ -56,6 +58,26 @@ class App extends Component {
     
     
   }
+  
+  //new
+  componentDidMount() {
+  
+          this.handleLoadTracks()
+        }
+   
+    
+   handleLoadTracks = () => {
+    
+    let api = 'https://di-manager-mirsha.c9users.io/categories'
+    axios.get(api).then((results) => {
+      console.log(results.data);
+    });
+  }
+  
+  
+  
+  //endnew
+
   
   render() {
     
