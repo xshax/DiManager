@@ -3,7 +3,7 @@ import React from 'react';
 export default class Header extends React.Component{
     render(){
         return(
-        <h1> Adresses</h1>
+        <h3> Adrese:</h3>
         )
     }
 }

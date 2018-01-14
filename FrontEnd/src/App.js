@@ -5,6 +5,7 @@ import TrackItem from './components/trackitem'
 import Map from './components/gmap'
 import Form from './components/form'
 import axios from 'axios';
+import SForm from './components/searchform'
 
 
 
@@ -13,7 +14,6 @@ import axios from 'axios';
 class App extends Component {
  constructor(props){
     super(props);
-  
    this.removeTrack=this.removeTrack.bind(this);
    }
   
@@ -34,6 +34,7 @@ class App extends Component {
   //render f
   
   state={
+    searchString:'',
     fields:{},
      tracks:[
        // {id:0, name:"TO1 from2 namee",to:'t' ,from:'f'},
@@ -89,6 +90,24 @@ class App extends Component {
     
   }
   
+  onSearch=(fields)=>{
+    this.setState({fields});
+    let api = 'https://di-manager-mirsha.c9users.io/tracks/'+fields.firstName
+    axios.get(api).then((results) => {
+      console.log("Search resutls for")
+      console.log(results.data);
+      var string=''+results.data.id+'. '+results.data.name+': '+
+      results.data.locstart+' -> '+results.data.locend;
+      //alert("Traseul cautat este: "+string);
+      this.setState({
+      searchstring:string
+       });
+      
+      
+    })
+  }
+  
+  
   
   componentDidMount() {
   
@@ -136,8 +155,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-       
-          <h1 className="App-title">DiManager -  manager de trasee</h1>
+        <h1 className="App-title">
+        <img src="https://image.flaticon.com/icons/svg/45/45944.svg" alt="logo?"></img>
+          
+          DiManager </h1>
+          <h3>~manager de trasee~</h3>
         </header>
         
         <div className="main-wrapper">
@@ -167,8 +189,8 @@ class App extends Component {
           })
         }
         </ul>
-        
-        
+        <SForm onSearch={fields=>this.onSearch(fields)}/>
+        <p id="searchp">{this.state.searchstring}</p>
         </div>
         
       </div>

@@ -20,9 +20,12 @@ export default class TrackItem extends React.Component{
             <button className="editTrack" 
             onClick={(e)=>this.editTrack(this.props.id)}>edit</button>
             
+            <b>{this.props.track.id}.&nbsp;</b>
+            
             {this.props.track.name}:&nbsp;&nbsp; 
             {this.props.track.from} &nbsp; -> &nbsp; 
             {this.props.track.to}
+            
             
            
             </div>
