@@ -1,4 +1,5 @@
 import React from 'react';
+import './form.css';
 
 export default class Form extends React.Component{
     state={
@@ -36,7 +37,7 @@ export default class Form extends React.Component{
                  <input placeholder='to' value={this.state.userName} 
                  onChange={e=>this.setState({userName: e.target.value})}/>
                 <br/>
-                 <button onClick={e=>this.onSubmit(e)}>Submit</button>
+                 <button className="buttonform"onClick={e=>this.onSubmit(e)}>Submit</button>
             </form>
             
         );

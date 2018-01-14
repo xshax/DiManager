@@ -5,7 +5,7 @@ var nodeadmin = require("nodeadmin")
 //FASJNDSAIC CORS = 4 ore din viata 
 var cors=require('cors')
 var app=express()
-app.use(cors());
+//app.use(cors()); down
 
 
 
@@ -52,6 +52,7 @@ app.use('/admin', express.static('admin'))
 
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
+app.use(cors());
 
 
 
@@ -146,7 +147,7 @@ app.get('/tracks/:id', cors(),function(request, response) {
 
 //create new track
 
-app.post('/tracks', cors(), function(request, response) {
+app.post('/tracks',cors(), function(request, response) {
     Tracks.create(request.body).then(function(track) {
         response.status(201).send(track)
     })

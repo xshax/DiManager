@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+body{
+    color: #36382E;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
 .trackWrapper{
-    border-bottom:1px solid green;
+    border-bottom:1px solid #FFC8B6;
     text-align: left;
     margin-bottom:10px;
 }
@@ -7,14 +14,16 @@
 .removeTrack{
     margin-right:0px;
     margin-bottom:10px;
+    padding:3px;
+    padding-right:5px;
+    padding-left:5px;
     outline:none;
     border-width:2px;
     border-radius:3px;
     border-style:solid;
-    padding:0px;
-    color:teal;
-    border-color:red;
-    background-color:transparent;
+    color:#36382E;
+    border-color:#F06449;
+    background-color:#5BC3EB;
 }
 
 .editTrack{
@@ -25,8 +34,10 @@
     border-width:2px;
     border-radius:3px;
     border-style:solid;
-    padding:0px;
-    color:green;
-    border-color:green;
-    background-color:transparent;
+    padding:3px;
+    padding-right:5px;
+    padding-left:5px;
+    color:#36382E;
+    border-color:#5BC3EB;
+    background-color:#5BC3EB;
 }
